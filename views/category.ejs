@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600;700&family=Tilt+Prism&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- to do app title -->
+        <div class="header">
+            <h1>TODO App</h1>
+        </div>
+
+        <!-- form for adding category -->
+        <div class="form">
+            <form action="/add-category" method="POST">
+                <div class="form-group">
+                    <label for="task">CATEGORY NAME</label>
+                    <input type="text" name="category" id="category" placeholder="Add a New Category..." required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-dark" id="add-task"><i class="fa-solid fa-plus"></i> Add
+                        Category</button>
+                        <a href="/"  class="btn btn-primary"><i class="fa-sharp fa-solid fa-arrow-left"></i> Go Back</a>
+                    
+                </div>
+            </form>
+        </div>
+
+        <!-- category list starts -->
+        <div class="list">
+            <form action="/delete-category" method="POST">
+                <div class="list-header">
+                    <h2>All Category</h2>
+                    <button type="submit" class="btn-sm btn-red"><i class="fa-solid fa-trash"></i> Delete
+                        Category</button>
+                </div>
+                <% if(category.length==0){ %>
+
+                    <h3>No Category Found!</h3>
+
+                    <%} %>
+
+                        <ul>
+                            <!-- showing all category -->
+                            <% for(let i of category){ %>
+                                <li class="list-item">
+                                    <div class="task-detail">
+                                        <input type="checkbox" name="list" value="<%= i._id %>">
+                                        <div class="task-item">
+                                            <h3>
+                                                <%= i.name %>
+                                            </h3>
+                                            
+                                        </div>
+                                    </div>
+                                </li>
+                                <% }%>
+
+                        </ul>
+            </form>
+
+        </div>
+        <!-- category list ends -->
+    </div>
+
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
